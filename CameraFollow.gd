@@ -1,10 +1,13 @@
 extends Camera3D
 
-@export var target: Node3D
 @export var follow_speed: float = 5.0
-
 @export var camera_distance: float = 6.0
 @export var camera_height: float = 3.0
+
+var target: Node3D
+
+func _ready():
+    target = get_parent().get_node_or_null("Player")
 
 func _process(delta):
 
@@ -21,7 +24,7 @@ func _process(delta):
 
     global_position = global_position.lerp(
         desired_position,
-        follow_speed * delta
+        clampf(follow_speed * delta, 0.0, 1.0)
     )
 
     look_at(target_position + Vector3(0, 1, 0))
