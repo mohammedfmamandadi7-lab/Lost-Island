@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" path="res://Player.tscn" id="1"]
 [ext_resource type="Script" path="res://CameraFollow.gd" id="2"]
-[ext_resource type="Script" path="res://TouchControls.gd" id="3"]
+[ext_resource type="Script" path="res://Island.gd" id="3"]
 
 [node name="Main" type="Node3D"]
 
-[node name="Ground" type="MeshInstance3D" parent="."]
-mesh = PlaneMesh.new()
+[node name="Island" type="Node3D" parent="."]
+script = ExtResource("3")
 
 [node name="Player" parent="." instance=ExtResource("1")]
 position = Vector3(0, 1, 0)
@@ -20,6 +20,4 @@ target = NodePath("../Player")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 rotation_degrees = Vector3(-50, -30, 0)
-
-[node name="TouchControls" type="CanvasLayer" parent="."]
-script = ExtResource("3")
+shadow_enabled = true
